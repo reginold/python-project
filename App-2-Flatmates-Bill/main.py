@@ -6,6 +6,15 @@ from report import PdfReport
 
 
 
+
+
+amount = input("hey user, enter the bill amount: ")
+bill_date = input("what is the bill period? E.g. December 2020: ")
+name_1 = input("what is your name: ")
+day_1 = input(f"how many days did {name_1} stay in the house during the bill period: ")
+name_2 = input("what is name of other flatmate: ")
+day_2 = input(f"how many days did {name_2} stay in the house during the bill period: ")
+
 the_bill = Bill(1000, "April 2020")
 print(the_bill.amount)
 person1 = Flatmate("Lu", 15)
@@ -16,8 +25,6 @@ print(person1_pay)
 
 pdf = PdfReport('output_file.pdf')
 pdf.generate(person1, person2, the_bill)
-
-
 # def main(amount, name1, name2, day1, day2):
 # 	day_pay = int(amount) / (int(day1) + int(day2))
 # 	person1_pay = day_pay * int(day1)
