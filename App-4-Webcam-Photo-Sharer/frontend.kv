@@ -1,0 +1,70 @@
+# <FirstScreen>:
+#     GridLayout:
+#         cols: 1
+#         padding: 10
+#         spacing: 10
+# 	Image:
+# 	    id: img
+# 	    size_hint_y: 0.8 
+	    
+# 	TextInput:
+# 	    id: user_query
+# 	    size_hint_y: 0.2
+# 	Button:
+# 	    text: 'Search Image'
+# 	    size_hint_y: 0.1
+# 	    on_press: root.set_image()
+# <RootWidget>:
+#     FirstScreen:       
+#         id: first_screen
+#         name: 'first_screen'
+
+<CameraScreen>:
+    GridLayout:
+    	cols: 1
+	Camera:
+	    id: camera
+	    resolution: (640, 480)
+	    size_hint_y: 1
+	    play: False
+	    opacity: 0
+	Button:
+	    id: camera_button
+	    text: 'Start Camera'
+	    size_hint_y: 0.5
+	    on_press: root.start() if root.ids.camera.play == False else root.stop()
+	    background_normal: 'images/normal.png'
+	    background_down: 'images/down.png'
+	Button:
+	    text: 'Capture'
+	    size_hint_y: 0.2 
+	    on_press: root.capture()
+
+<ImageScreen>:
+    GridLayout:
+        cols: 1
+        padding: 10
+	Image:
+	    id: img
+            size_hint_y: 0.7
+	Button:
+	    text: 'Create Sharable link'
+	    on_press: root.create_link()
+	    size_hint_y: 0.5
+	Label:
+	    text: ''
+	GridLayout:
+	    cols: 2
+	    Button:
+	        text: 'Copy Link'
+                on_press: root.copy_link()
+            Button:
+	        text: 'Open Link'
+                on_press: root.open_link()			   
+<RootWidget>:
+    CameraScreen:       
+        id: Camera_screen
+        name: 'camera_screen'
+    ImageScreen:       
+        id: image_screen
+        name: 'image_screen'
