@@ -1,9 +1,8 @@
 from os import name
 
-from calorie import Calorie
 from flask import Flask, render_template, request
 from flask.views import MethodView
-from temperature import Temperature
+from flatmates_bill import flat
 from wtforms import Form, StringField, SubmitField
 
 # __name__ refers to the python file
@@ -18,7 +17,7 @@ class HomePage(MethodView):
 class BillFormPage(MethodView):
     def get(self):
         bill_form = BillForm()
-        return render_template("calories_form_page.html", billform=bill_form)
+        return render_template("bill_form_page.html", billform=bill_form)
 
     def post(self):
         bill_form = BillForm(request.form)
@@ -43,30 +42,6 @@ class BillFormPage(MethodView):
             amount2=flatemate1.pays(the_bill, flatemate1),
             billform=bill_form,
         )
-
-
-# class ResultPage(MethodView):
-#     def post(self):
-#         bill_form = BillForm(request.form)
-#         amount = bill_form.amount.data
-#         period = bill_form.period.data
-
-#         name1 = bill_form.name1.data
-#         days_in_house1 = bill_form.days_in_house1.data
-
-#         name2 = bill_form.name2.data
-#         days_in_house2 = bill_form.days_in_house2.data
-
-#         the_bill = flat.Bill(float(amount), period)
-#         flatemate1 = flat.Flatmate(name1, float(days_in_house1))
-#         flatemate2 = flat.Flatmate(name2, float(days_in_house2))
-#         return render_template(
-#             "bill_form_page.html",
-#             name1=flatemate1.name,
-#             name2=flatemate2.name,
-#             amount1=flatemate1.pays(the_bill, flatemate2),
-#             amount2=flatemate1.pays(the_bill, flatemate1),
-#         )
 
 
 class BillForm(Form):
